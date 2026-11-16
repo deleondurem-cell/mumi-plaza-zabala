@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MuMI | Muralla Abierta - Plaza Zabala</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Header fijo -->
+    <header id="app-header" class="app-header">
+      <button id="btn-home" class="header-brand" aria-label="Volver al inicio">
+        <img src="img/header.svg" alt="MuMI | Muralla Abierta" class="header-logo">
+      </button>
+      <button id="btn-back" class="header-back" aria-label="Volver a la pantalla anterior" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Atrás</span>
+      </button>
+    </header>
+
+    <!-- Área central dinámica -->
+    <main id="screen-content" class="screen-content" aria-live="polite"></main>
+
+    <!-- Botonera fija inferior -->
+    <footer id="screen-footer" class="screen-footer"></footer>
+  </div>
+
+  <!-- Reproductor de audio oculto -->
+  <audio id="audio-player" preload="none"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
