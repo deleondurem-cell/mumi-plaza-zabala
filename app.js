@@ -2,12 +2,12 @@
 const ICONS = {
   speaker: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>`,
   pause: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`,
+  cardArrow: `<svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>`,
   warning: `<svg viewBox="0 0 120 110" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M60 10 L112 100 H8 Z"/><line x1="60" y1="42" x2="60" y2="70"/><circle cx="60" cy="84" r="2.5" fill="#000000"/></svg>`,
   arrowUp: `<svg viewBox="0 0 120 120" fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="60" y1="100" x2="60" y2="22"/><polyline points="30,52 60,22 90,52"/></svg>`,
   arrowRight: `<svg viewBox="0 0 120 120" fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M36 105 V55 C36 42 46 32 59 32 H76 V16 L104 40 L76 64 V48 H59 C54 48 50 52 50 57 V105 Z"/></svg>`,
   arrowLeft: `<svg viewBox="0 0 120 120" fill="none" stroke="#000000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M84 105 V55 C84 42 74 32 61 32 H44 V16 L16 40 L44 64 V48 H61 C66 48 70 52 70 57 V105 Z"/></svg>`,
-  uTurn: `<svg viewBox="0 0 120 120" fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M82 95 V46 C82 30 70 18 55 18 C40 18 28 30 28 46 V92"/><polyline points="12,74 28,92 44,74"/></svg>`,
-  check: `<svg viewBox="0 0 120 120" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="60" cy="60" r="46"/><polyline points="38,62 53,77 84,45" stroke-width="8"/></svg>`
+  uTurn: `<svg viewBox="0 0 120 120" fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M82 95 V46 C82 30 70 18 55 18 C40 18 28 30 28 46 V92"/><polyline points="12,74 28,92 44,74"/></svg>`
 };
 
 // Base de datos de todas las pantallas de Web 2: Plaza Zabala
@@ -27,23 +27,25 @@ const SCREENS = {
 
   selector: {
     type: "selector",
-    title: "Te presentamos dos formas de llegar\n¿Qué recorrido te gustaría hacer?",
+    title: "Elegí entre dos recorridos: histórico o directo ¿Cuál preferís hacer?",
     options: [
       {
-        description: "Vas a conocer puntos clave sobre el Montevideo colonial",
-        buttonLabel: "Recorrido histórico",
+        title: "Recorrido histórico",
+        description: "Vas a conocer puntos clave sobre el Montevideo colonial.",
+        buttonLabel: "Elegir este recorrido",
         next: "hist_71"
       },
       {
+        title: "Recorrido directo",
         description: "Esta es la forma más simple y rápida de llegar al museo.",
-        buttonLabel: "Recorrido directo",
+        buttonLabel: "Elegir este recorrido",
         next: "dir_11"
       }
     ]
   },
 
   // ==========================================
-  // RECORRIDO DIRECTO (Pantallas 11 a 16)
+  // RECORRIDO DIRECTO (Pantallas 11 a 15)
   // ==========================================
   dir_11: {
     title: "Estás en la Plaza Zabala, ¿Vamos hasta el MuMI?",
@@ -108,23 +110,11 @@ const SCREENS = {
     audio: "audio/pagina15.mp3",
     audioLabel: "Escuchar instrucción",
     primaryLabel: "Siguiente paso",
-    next: "dir_16"
-  },
-
-  dir_16: {
-    icon: "check",
-    title: "¡Llegaste al MuMI!",
-    paragraphs: [
-      "A tu derecha está la entrada principal, y siguiendo media cuadra más se encuentra la entrada a la Muralla Abierta. Al entrar por la puerta principal, vas a encontrar el mostrador a tu derecha. Podés acercarte si necesitás ayuda o información."
-    ],
-    audio: "audio/pagina7.mp3",
-    audioLabel: "Escuchar información",
-    primaryLabel: "Finalizar recorrido",
-    next: "final"
+    next: "arrival"
   },
 
   // ==========================================
-  // RECORRIDO HISTÓRICO (Pantallas 71 a 107)
+  // RECORRIDO HISTÓRICO (Pantallas 71 a 106)
   // ==========================================
   hist_71: {
     image: "img/mapa-historico.png",
@@ -571,22 +561,31 @@ const SCREENS = {
     audio: "audio/pagina106.mp3",
     audioLabel: "Escuchar instrucción",
     primaryLabel: "Siguiente paso",
-    next: "hist_107"
+    next: "arrival"
   },
 
-  hist_107: {
-    icon: "check",
-    title: "¡Llegaste al MuMI!",
-    paragraphs: [
-      "A tu derecha está la entrada principal, y siguiendo media cuadra más se encuentra la entrada a la Muralla Abierta. Al entrar por la puerta principal, vas a encontrar el mostrador a tu derecha. Podés acercarte si necesitás ayuda o información."
+  // PENÚLTIMA PANTALLA UNIFICADA (Accesos al MuMI)
+  arrival: {
+    type: "arrival",
+    title: "Estás en la entrada principal del MuMI",
+    lead: "¡Bienvenido! Elegí por qué acceso querés ingresar",
+    sections: [
+      {
+        heading: "Puerta principal (con opción accesible)",
+        body: "El acceso por la puerta principal tiene escalones y una puerta grande de madera y vidrio que se abre hacia los dos lados. Si preferís evitar los escalones, caminá unos 3 metros (unos 4 o 5 pasos) hacia tu derecha, sobre la calle Bartolomé Mitre. Allí se encuentra la entrada accesible a nivel del suelo."
+      },
+      {
+        heading: "Entrada por Muralla Abierta",
+        body: "Para entrar por la Muralla Abierta, avanzá hacia tu izquierda por la calle Piedras hasta sentir que el piso cambia a una vereda de adoquines. En ese punto, girá hacia tu derecha y vas a encontrar el portón de ingreso. Tené en cuenta que en esta entrada no hay recepción."
+      }
     ],
-    audio: "audio/pagina7.mp3",
-    audioLabel: "Escuchar información",
+    audio: "audio/llegada.mp3",
+    audioLabel: "Escuchar instrucción",
     primaryLabel: "Finalizar recorrido",
     next: "final"
   },
 
-  // PANTALLA FINAL (108)
+  // PANTALLA FINAL NEGRA
   final: {
     type: "final"
   }
@@ -662,10 +661,8 @@ function renderScreen(screenId) {
   const data = SCREENS[screenId];
   if (!data) return;
 
-  // Mostrar u ocultar botón "Atrás" en el header
   btnBack.hidden = historyStack.length <= 1 || data.type === 'final';
 
-  // Resetear contenedores
   screenContent.scrollTop = 0;
   screenContent.innerHTML = '';
   screenFooter.innerHTML = '';
@@ -673,7 +670,7 @@ function renderScreen(screenId) {
   appHeader.style.display = 'flex';
   screenContent.className = 'screen-content';
 
-  // Pantalla Final Negra (solo logo + botón volver al inicio)
+  // Pantalla Final Negra
   if (data.type === 'final') {
     appContainer.classList.add('dark-mode');
     appHeader.style.display = 'none';
@@ -686,30 +683,76 @@ function renderScreen(screenId) {
     return;
   }
 
-  // Pantalla de Selección de Recorrido
+  // Pantalla 10: Selector de recorrido con tarjetas
   if (data.type === 'selector') {
     screenContent.classList.add('selector-layout');
 
     const titleEl = document.createElement('h1');
     titleEl.className = 'screen-title';
-    titleEl.innerHTML = data.title.replace(/\n/g, '<br>');
+    titleEl.textContent = data.title;
     screenContent.appendChild(titleEl);
 
-    const optionsWrapper = document.createElement('div');
-    optionsWrapper.className = 'selector-options';
+    const cardsWrapper = document.createElement('div');
+    cardsWrapper.className = 'selector-cards';
 
     data.options.forEach(opt => {
-      const block = document.createElement('div');
-      block.className = 'choice-block';
-      block.innerHTML = `
+      const card = document.createElement('div');
+      card.className = 'choice-card';
+      card.innerHTML = `
+        <div class="choice-card-header">
+          <h2>${opt.title}</h2>
+          ${ICONS.cardArrow}
+        </div>
         <p>${opt.description}</p>
         <button class="btn btn-primary">${opt.buttonLabel}</button>
       `;
-      block.querySelector('button').addEventListener('click', () => navigateTo(opt.next));
-      optionsWrapper.appendChild(block);
+      card.querySelector('button').addEventListener('click', () => navigateTo(opt.next));
+      cardsWrapper.appendChild(card);
     });
 
-    screenContent.appendChild(optionsWrapper);
+    screenContent.appendChild(cardsWrapper);
+    return;
+  }
+
+  // Penúltima pantalla: Accesos al MuMI con scroll
+  if (data.type === 'arrival') {
+    const titleEl = document.createElement('h1');
+    titleEl.className = 'screen-title';
+    titleEl.textContent = data.title;
+    screenContent.appendChild(titleEl);
+
+    const leadEl = document.createElement('p');
+    leadEl.className = 'arrival-lead';
+    leadEl.textContent = data.lead;
+    screenContent.appendChild(leadEl);
+
+    data.sections.forEach(sec => {
+      const secDiv = document.createElement('section');
+      secDiv.className = 'arrival-section';
+      secDiv.innerHTML = `
+        <h2>${sec.heading}</h2>
+        <p>${sec.body}</p>
+      `;
+      screenContent.appendChild(secDiv);
+    });
+
+    if (data.audio) {
+      const label = data.audioLabel || 'Escuchar instrucción';
+      const audioBtn = document.createElement('button');
+      audioBtn.className = 'btn btn-audio';
+      audioBtn.dataset.label = label;
+      audioBtn.innerHTML = `${ICONS.speaker}<span>${label}</span>`;
+      audioBtn.addEventListener('click', () => toggleAudio(data.audio, audioBtn, label));
+      screenFooter.appendChild(audioBtn);
+    }
+
+    if (data.primaryLabel && data.next) {
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'btn btn-primary';
+      nextBtn.textContent = data.primaryLabel;
+      nextBtn.addEventListener('click', () => navigateTo(data.next));
+      screenFooter.appendChild(nextBtn);
+    }
     return;
   }
 
@@ -772,7 +815,6 @@ function renderScreen(screenId) {
     screenContent.appendChild(highEl);
   }
 
-  // Botón de audio en el footer
   if (data.audio) {
     const label = data.audioLabel || 'Escuchar presentación';
     const audioBtn = document.createElement('button');
@@ -783,7 +825,6 @@ function renderScreen(screenId) {
     screenFooter.appendChild(audioBtn);
   }
 
-  // Botón principal de avance
   if (data.primaryLabel && data.next) {
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn btn-primary';
@@ -793,9 +834,7 @@ function renderScreen(screenId) {
   }
 }
 
-// Eventos de navegación del header
 btnHome.addEventListener('click', resetToHome);
 btnBack.addEventListener('click', goBack);
 
-// Iniciar la aplicación
 resetToHome();
