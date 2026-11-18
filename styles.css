@@ -60,11 +60,12 @@ html, body {
 .app-header {
   background-color: #000000;
   color: #FFFFFF;
-  height: 76px;
+  height: 84px;
   padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   flex-shrink: 0;
 }
 
@@ -75,11 +76,15 @@ html, body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .header-logo {
-  height: 40px;
+  height: 52px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -96,6 +101,7 @@ html, body {
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .header-back[hidden] {
@@ -122,8 +128,8 @@ html, body {
 }
 
 .screen-content.selector-layout {
-  justify-content: space-between;
-  padding-bottom: 28px;
+  justify-content: flex-start;
+  padding-bottom: 24px;
 }
 
 .screen-content.final-dark {
@@ -179,6 +185,37 @@ html, body {
   flex-shrink: 0;
 }
 
+/* Secciones con subtítulo en negrita (Penúltima pantalla de llegada al MuMI) */
+.arrival-lead {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-bottom: 22px;
+  flex-shrink: 0;
+}
+
+.arrival-section {
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.arrival-section:last-child {
+  margin-bottom: 8px;
+}
+
+.arrival-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.28;
+  margin-bottom: 10px;
+}
+
+.arrival-section p {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.38;
+}
+
 /* Contenedores visuales (Íconos SVG, Mapas y Fotos) */
 .icon-wrapper {
   display: flex;
@@ -201,7 +238,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Mapas: tamaño equilibrado con aire respecto al texto */
+/* Mapas */
 .map-img {
   width: 195px;
   height: auto;
@@ -210,7 +247,7 @@ html, body {
   display: block;
 }
 
-/* Fotos históricas: proporción 310 x 413 completa sin recortes y separada del título */
+/* Fotos históricas */
 .photo-img {
   width: auto;
   height: auto;
@@ -220,18 +257,53 @@ html, body {
   display: block;
 }
 
-/* Pantalla de selección de recorrido */
-.selector-options {
+/* Tarjetas de selección de recorrido (Pantalla 10) */
+.selector-cards {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-top: auto;
+  gap: 16px;
+  margin-top: 4px;
 }
 
-.choice-block p {
-  font-size: 22px;
+.choice-card {
+  border: 1.5px solid #000000;
+  border-radius: 10px;
+  padding: 18px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.choice-card-header h2 {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.choice-card-header svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.choice-card p {
+  font-size: 20px;
+  font-weight: 400;
   line-height: 1.32;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+.choice-card .btn {
+  font-size: 18px;
+  min-height: 48px;
 }
 
 /* Footer y Botones */
@@ -242,6 +314,7 @@ html, body {
   gap: 12px;
   background-color: #FFFFFF;
   flex-shrink: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .screen-footer:empty {
@@ -297,6 +370,17 @@ html, body {
   max-width: 65%;
   height: auto;
   margin-bottom: 36px;
+}
+
+.btn-restart-dark {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1.5px solid #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Open Runde', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .btn-restart-dark {
